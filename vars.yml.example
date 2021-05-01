@@ -1,2 +1,3 @@
 dns_aws_zone: <dns_aws_zone>
 xmpp_domain: <desired domain for XMPP>
+acme_email: <email to receive renew cert notifications>
