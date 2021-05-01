@@ -48,6 +48,25 @@ listen:
     module: mod_mqtt
     backlog: 1000
 
+  -
+    port: 3478
+    transport: udp
+    module: ejabberd_stun
+    use_turn: true
+    turn_min_port: 49152
+    turn_max_port: 65535
+    turn_ip: {{ hostvars['frtcuop'].ansible_host }}
+  -
+    port: 5349
+    transport: tcp
+    module: ejabberd_stun
+    use_turn: true
+    tls: true
+    turn_min_port: 49152
+    turn_max_port: 65535
+    ip: {{ hostvars['frtcuop'].ansible_host }}
+    turn_ip: {{ hostvars['frtcuop'].ansible_host }}
+
 s2s_use_starttls: optional
 
 acl:
@@ -108,9 +127,12 @@ api_permissions:
       - status
       - connected_users_number
 
+# from https://www.process-one.net/blog/how-to-set-up-ejabberd-video-voice-calling/
 shaper:
-  normal: 1000
-  fast: 50000
+  normal:
+    rate: 3000
+    burst_size: 20000
+  fast: 100000
 
 shaper_rules:
   max_user_sessions: 10
@@ -199,6 +221,33 @@ modules:
   mod_shared_roster: {}
   mod_stream_mgmt:
     resend_on_timeout: if_offline
+  mod_stun_disco:
+    credentials_lifetime: 12h
+    services:
+        -
+          host: {{ hostvars['frtcuop'].ansible_host }}
+          port: 3478
+          type: stun
+          transport: udp
+          restricted: false
+        -
+          host: {{ hostvars['frtcuop'].ansible_host }}
+          port: 3478
+          type: turn
+          transport: udp
+          restricted: true
+        -
+          host: {{ xmpp_domain }}
+          port: 5349
+          type: stuns
+          transport: tcp
+          restricted: false
+        -
+          host: {{ xmpp_domain }}
+          port: 5349
+          type: turns
+          transport: tcp
+          restricted: true
   mod_vcard: {}
   mod_vcard_xupdate: {}
   mod_version:

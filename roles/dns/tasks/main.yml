@@ -14,3 +14,51 @@
     type: SRV
     value: "0 0 5222 {{ hostvars['frtcuop'].ansible_host }}"
     wait: yes
+- name: set _stun._udp record
+  community.aws.route53:
+    state: present
+    zone: "{{ dns_aws_zone }}"
+    record: "_stun._udp.{{ xmpp_domain }}"
+    type: SRV
+    value: "0 0 3478 {{ hostvars['frtcuop'].ansible_host }}"
+    wait: yes
+- name: set _stun._tcp record
+  community.aws.route53:
+    state: present
+    zone: "{{ dns_aws_zone }}"
+    record: "_stun._tcp.{{ xmpp_domain }}"
+    type: SRV
+    value: "0 0 3478 {{ hostvars['frtcuop'].ansible_host }}"
+    wait: yes
+- name: set _stuns._tcp record
+  community.aws.route53:
+    state: present
+    zone: "{{ dns_aws_zone }}"
+    record: "_stuns._tcp.{{ xmpp_domain }}"
+    type: SRV
+    value: "0 0 5349 {{ hostvars['frtcuop'].ansible_host }}"
+    wait: yes
+- name: set _turn._udp record
+  community.aws.route53:
+    state: present
+    zone: "{{ dns_aws_zone }}"
+    record: "_turn._udp.{{ xmpp_domain }}"
+    type: SRV
+    value: "0 0 3478 {{ hostvars['frtcuop'].ansible_host }}"
+    wait: yes
+- name: set _turn._tcp record
+  community.aws.route53:
+    state: present
+    zone: "{{ dns_aws_zone }}"
+    record: "_turn._tcp.{{ xmpp_domain }}"
+    type: SRV
+    value: "0 0 3478 {{ hostvars['frtcuop'].ansible_host }}"
+    wait: yes
+- name: set _turns._tcp record
+  community.aws.route53:
+    state: present
+    zone: "{{ dns_aws_zone }}"
+    record: "_turns._tcp.{{ xmpp_domain }}"
+    type: SRV
+    value: "0 0 5349 {{ hostvars['frtcuop'].ansible_host }}"
+    wait: yes
