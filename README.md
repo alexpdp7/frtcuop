@@ -32,7 +32,9 @@ FRTCUOP is based in existing open source projects.
   * Instant messaging
   * Group messaging
   * Audio/video calls
+  * Federation
   * Modern experience (push notifications, low battery usage, delivery/read receipts, etc.)
+* Compatible with Movim servers (tested with https://chatterboxtown.us/)
 
 ### Version 0
 
@@ -40,7 +42,6 @@ FRTCUOP is based in existing open source projects.
 * Monitoring, creating Nagios plugins that can check the correct operation of the FRTCUOP system
 * Automatic updates
 * XMPP server deployment, usable by the Conversations XMPP client, with the following features:
-  * Federation
   * Modern experience (multiple device synchronization, inline multimedia, real-time location sharing, etc.)
 
 ### Version 1

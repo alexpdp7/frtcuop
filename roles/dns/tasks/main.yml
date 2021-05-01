@@ -1,64 +1,18 @@
-- name: set _xmpp-server._tcp record
+- name: set DNS records
   community.aws.route53:
     state: present
     zone: "{{ dns_aws_zone }}"
-    record: "_xmpp-server._tcp.{{ xmpp_domain }}"
+    record: "{{ item.srv_record }}.{{ xmpp_domain }}"
     type: SRV
-    value: "0 0 5269 {{ hostvars['frtcuop'].ansible_host }}"
+    value: "0 0 {{ item.port }} {{ hostvars['frtcuop'].ansible_host }}"
     wait: yes
-- name: set _xmpp-client._tcp record
-  community.aws.route53:
-    state: present
-    zone: "{{ dns_aws_zone }}"
-    record: "_xmpp-client._tcp.{{ xmpp_domain }}"
-    type: SRV
-    value: "0 0 5222 {{ hostvars['frtcuop'].ansible_host }}"
-    wait: yes
-- name: set _stun._udp record
-  community.aws.route53:
-    state: present
-    zone: "{{ dns_aws_zone }}"
-    record: "_stun._udp.{{ xmpp_domain }}"
-    type: SRV
-    value: "0 0 3478 {{ hostvars['frtcuop'].ansible_host }}"
-    wait: yes
-- name: set _stun._tcp record
-  community.aws.route53:
-    state: present
-    zone: "{{ dns_aws_zone }}"
-    record: "_stun._tcp.{{ xmpp_domain }}"
-    type: SRV
-    value: "0 0 3478 {{ hostvars['frtcuop'].ansible_host }}"
-    wait: yes
-- name: set _stuns._tcp record
-  community.aws.route53:
-    state: present
-    zone: "{{ dns_aws_zone }}"
-    record: "_stuns._tcp.{{ xmpp_domain }}"
-    type: SRV
-    value: "0 0 5349 {{ hostvars['frtcuop'].ansible_host }}"
-    wait: yes
-- name: set _turn._udp record
-  community.aws.route53:
-    state: present
-    zone: "{{ dns_aws_zone }}"
-    record: "_turn._udp.{{ xmpp_domain }}"
-    type: SRV
-    value: "0 0 3478 {{ hostvars['frtcuop'].ansible_host }}"
-    wait: yes
-- name: set _turn._tcp record
-  community.aws.route53:
-    state: present
-    zone: "{{ dns_aws_zone }}"
-    record: "_turn._tcp.{{ xmpp_domain }}"
-    type: SRV
-    value: "0 0 3478 {{ hostvars['frtcuop'].ansible_host }}"
-    wait: yes
-- name: set _turns._tcp record
-  community.aws.route53:
-    state: present
-    zone: "{{ dns_aws_zone }}"
-    record: "_turns._tcp.{{ xmpp_domain }}"
-    type: SRV
-    value: "0 0 5349 {{ hostvars['frtcuop'].ansible_host }}"
-    wait: yes
+    overwrite: yes
+  loop:
+    - { srv_record: '_xmpp-server._tcp', port: '5269' }
+    - { srv_record: '_xmpp-client._tcp', port: '5222' }
+    - { srv_record: '_stun._udp', port: '3478' }
+    - { srv_record: '_stun._tcp', port: '3478' }
+    - { srv_record: '_stuns._tcp', port: '5349' }
+    - { srv_record: '_turn._udp', port: '3478' }
+    - { srv_record: '_turn._tcp', port: '3478' }
+    - { srv_record: '_turns._tcp', port: '5349' }
