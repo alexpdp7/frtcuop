@@ -40,9 +40,6 @@ FRTCUOP is based in existing open source projects.
 * Monitoring, creating Nagios plugins that can check the correct operation of the FRTCUOP system
 * Automatic updates
 * XMPP server deployment, usable by the Conversations XMPP client, with the following features:
-  * Instant messaging
-  * Group messaging
-  * Audio/video calls
   * Federation
   * Modern experience (multiple device synchronization, inline multimedia, real-time location sharing, etc.)
 
