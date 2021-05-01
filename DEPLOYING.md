@@ -47,6 +47,12 @@ Deploy:
 $ ./ansible-playbook -K -e @vars.yml deploy.yml
 ```
 
+Create and deploy certs (or renew):
+
+```
+$ ./ansible-playbook -K -e @vars.yml certs.yml
+```
+
 Create users:
 
 ```
