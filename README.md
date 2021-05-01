@@ -26,6 +26,14 @@ FRTCUOP will be based in existing open source projects.
 
 ## Roadmap
 
+## What's working
+
+* XMPP server deployment, usable by the Conversations XMPP client, with the following features:
+  * Instant messaging
+  * Group messaging
+  * Audio/video calls
+  * Modern experience (push notifications, low battery usage, delivery/read receipts, etc.)
+
 ### Version 0
 
 * Backup/restore, allowing the entire state of the FRTCUOP system to be stored in a file, and restoring an FRTCUOP system from such file
@@ -36,7 +44,7 @@ FRTCUOP will be based in existing open source projects.
   * Group messaging
   * Audio/video calls
   * Federation
-  * Modern experience (push notifications, low battery usage, delivery/read receipts, multiple device synchronization, inline multimedia, location sharing, etc.)
+  * Modern experience (multiple device synchronization, inline multimedia, real-time location sharing, etc.)
 
 ### Version 1
 
