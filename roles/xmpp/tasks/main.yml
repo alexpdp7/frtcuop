@@ -1,0 +1,28 @@
+---
+- name: Install ejabberd
+  apt:
+    deb: https://static.process-one.net/ejabberd/downloads/21.04/ejabberd_21.04-0_amd64.deb
+- name: setup ejabberd.service in systemd
+  file:
+    src: /opt/ejabberd-21.04/bin/ejabberd.service
+    dest: /etc/systemd/system/ejabberd.service
+    state: link
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
+- name: configure /opt/ejabberd/conf/ejabberd.yml
+  template:
+    src: ejabberd.yml.j2
+    dest: /opt/ejabberd/conf/ejabberd.yml
+  register: ejabberd_yml
+- name: setup ejabberd.service
+  systemd:
+    name: ejabberd
+    enabled: yes
+    state: started
+- name: restart ejabberd.service
+  systemd:
+    name: ejabberd
+    enabled: yes
+    state: restarted
+  when: ejabberd_yml.changed

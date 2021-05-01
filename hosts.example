@@ -1,0 +1,1 @@
+frtcuop ansible_host=<ip> ansible_become=true

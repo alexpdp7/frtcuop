@@ -1,0 +1,16 @@
+- name: set _xmpp-server._tcp record
+  community.aws.route53:
+    state: present
+    zone: "{{ dns_aws_zone }}"
+    record: "_xmpp-server._tcp.{{ xmpp_domain }}"
+    type: SRV
+    value: "0 0 5269 {{ hostvars['frtcuop'].ansible_host }}"
+    wait: yes
+- name: set _xmpp-client._tcp record
+  community.aws.route53:
+    state: present
+    zone: "{{ dns_aws_zone }}"
+    record: "_xmpp-client._tcp.{{ xmpp_domain }}"
+    type: SRV
+    value: "0 0 5222 {{ hostvars['frtcuop'].ansible_host }}"
+    wait: yes
