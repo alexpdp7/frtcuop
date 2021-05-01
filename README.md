@@ -18,11 +18,11 @@ The same experience should be possible for real-time communications.
 
 ## Implementation
 
-FRTCUOP will deliver Ansible playbooks that allow deploying a FRTCUOP system, and the necessary documentation for administrators, and users.
+See [DEPLOYING.md](DEPLOYING.md).
 
-All FRTCUOP assets will be in the public domain.
+All FRTCUOP assets are in the public domain.
 
-FRTCUOP will be based in existing open source projects.
+FRTCUOP is based in existing open source projects.
 
 ## Roadmap
 
