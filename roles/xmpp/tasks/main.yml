@@ -7,20 +7,20 @@
     src: /opt/ejabberd-21.04/bin/ejabberd.service
     dest: /etc/systemd/system/ejabberd.service
     state: link
-- name: reload systemd
+- name: Reload systemd
   systemd:
     daemon_reload: yes
-- name: configure /opt/ejabberd/conf/ejabberd.yml
+- name: Configure /opt/ejabberd/conf/ejabberd.yml
   template:
     src: ejabberd.yml.j2
     dest: /opt/ejabberd/conf/ejabberd.yml
   register: ejabberd_yml
-- name: setup ejabberd.service
+- name: Setup ejabberd.service
   systemd:
     name: ejabberd
     enabled: yes
     state: started
-- name: restart ejabberd.service
+- name: Restart ejabberd.service
   systemd:
     name: ejabberd
     enabled: yes

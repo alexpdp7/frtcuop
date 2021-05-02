@@ -1,12 +1,12 @@
-- name: copy fullchain
+- name: Copy fullchain
   copy:
     src: "data/cert-{{ xmpp_domain }}-fullchain.crt"
     dest: /opt/ejabberd/conf/fullchain.pem
-- name: copy privkey
+- name: Copy privkey
   copy:
     src: "data/cert-{{ xmpp_domain }}.key"
     dest: /opt/ejabberd/conf//privkey.pem
-- name: restart ejabberd.service
+- name: Restart ejabberd.service
   systemd:
     name: ejabberd
     enabled: yes

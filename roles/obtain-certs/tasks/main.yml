@@ -1,19 +1,19 @@
-- name: create data directory
+- name: Create data directory
   file:
     path: data
     state: directory
-- name: create account key
+- name: Create account key
   openssl_privatekey:
     path: "data/acme-account.key"
-- name: create private key
+- name: Create private key
   openssl_privatekey:
     path: "data/cert-{{ domain }}.key"
-- name: create csr
+- name: Create csr
   openssl_csr:
     path: "data/cert-{{ domain }}.csr"
     privatekey_path: "data/cert-{{ domain }}.key"
     common_name: "{{ domain }}"
-- name: create challenge
+- name: Create challenge
   acme_certificate:
     account_key_src: "data/acme-account.key"
     account_email: "{{ acme_email }}"
@@ -24,7 +24,7 @@
     acme_version: 2
     terms_agreed: yes
   register: challenge
-- name: address challenge using Route 53
+- name: Address challenge using Route 53
   route53:
     zone: "{{ dns_aws_zone }}"
     record: "{{ challenge.challenge_data[domain]['dns-01'].record }}"
@@ -35,7 +35,7 @@
     wait: yes
     value: "{{ challenge.challenge_data[domain]['dns-01'].resource_value | regex_replace('^(.*)$', '\"\\1\"') }}"
   when: challenge is changed and domain in challenge.challenge_data
-- name: retrieve cert
+- name: Retrieve cert
   acme_certificate:
     account_key_src: "data/acme-account.key"
     account_email: "{{ acme_email }}"

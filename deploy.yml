@@ -1,9 +1,9 @@
-- name: set up DNS
+- name: Set up DNS
   hosts: 127.0.0.1
   connection: local
   roles:
     - dns
-- name: deploy XMPP server
+- name: Deploy XMPP server
   hosts: frtcuop
   roles:
     - xmpp
