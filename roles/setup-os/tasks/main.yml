@@ -1,0 +1,16 @@
+- name: Update apt cache
+  apt:
+    update_cache: yes
+- name: Update all packages to the latest version
+  apt:
+    upgrade: dist
+- name: Configure unattended-upgrades
+  debconf:
+    name: unattended-upgrades
+    question: unattended-upgrades/enable_auto_updates
+    value: "true"
+    vtype: boolean
+- name: Install unattended-upgrades
+  apt:
+    name: unattended-upgrades
+    state: present

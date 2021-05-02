@@ -3,7 +3,8 @@
   connection: local
   roles:
     - dns
-- name: Deploy XMPP server
+- name: Deploy
   hosts: frtcuop
   roles:
+    - setup-os
     - xmpp
