@@ -1,6 +1,7 @@
 # Prerequisites
 
 * A server with:
+  * Debian 10
   * Access via SSH
   * Can log in as a non-privileged user and sudo
   * Public IP
