@@ -60,3 +60,20 @@ Create users:
 $ ssh your_server
 $ sudo /opt/ejabberd-21.04/bin/ejabberdctl register user1 <domain> user1
 ```
+
+# Monitoring
+
+Using https://github.com/alexpdp7/ragent and standard Nagios checks:
+
+```
+$ /usr/lib64/nagios/plugins/check_ping -H <ip> -w 200,25% -c 400,45%
+$ /usr/lib64/nagios/plugins/check_ssh <ip>
+$ /usr/lib64/nagios/plugins/check_http -H <ip> -p 5443 --ssl -e 404
+$ /usr/lib64/nagios/plugins/check_http -H <ip> -p 5443 --ssl -e 404 -C 7,14
+
+# might fail on some providers until the server is rebooted, due to issues with cloud-init
+$ /usr/bin/check_ragent http://<ip>:21488/
+
+# TODO: check TLS
+$ /usr/lib64/nagios/plugins/check_jabber <ip>
+```

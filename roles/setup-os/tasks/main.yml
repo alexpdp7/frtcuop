@@ -1,3 +1,15 @@
+- name: Configure ragent apt source
+  copy:
+    content: "deb https://dl.cloudsmith.io/public/ragent/ragent/deb/debian buster main\n"
+    dest: /etc/apt/sources.list.d/ragent-ragent.list
+- name: Install gpg
+  apt:
+    name: gpg
+    state: present
+- name: Configure cloudsmith apt key
+  apt_key:
+    url: https://dl.cloudsmith.io/public/ragent/ragent/gpg.84A1BAE227267658.key
+    state: present
 - name: Update apt cache
   apt:
     update_cache: yes
@@ -14,3 +26,12 @@
   apt:
     name: unattended-upgrades
     state: present
+- name: Install ragent
+  apt:
+    name: ragent
+    state: present
+- name: Configure ragent service
+  systemd:
+    name: ragent
+    enabled: yes
+    state: started
