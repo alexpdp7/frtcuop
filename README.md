@@ -42,7 +42,7 @@ FRTCUOP is based in existing open source projects.
 
 * Backup/restore, allowing the entire state of the FRTCUOP system to be stored in a file, and restoring an FRTCUOP system from such file
 * XMPP server deployment, usable by the Conversations XMPP client, with the following features:
-  * Modern experience (multiple device synchronization, inline multimedia, real-time location sharing, etc.)
+  * Modern experience (multiple device synchronization, inline multimedia, etc.)
 
 ### Version 1
 
@@ -78,5 +78,6 @@ Those features are not part of the roadmap right now:
 * Clustering/high availability
 * End-to-end encryption
 * Accessibility
+* Real-time location sharing (not supported by Conversations?)
 
 However, the project could benefit from those features and would initially consider contributions to the project in those areas.
