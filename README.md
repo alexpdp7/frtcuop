@@ -37,10 +37,7 @@ FRTCUOP is based in existing open source projects.
 * Monitoring
 * Compatible with Movim servers (tested with https://chatterboxtown.us/)
 * Automatic updates
-
-### Version 0
-
-* Backup/restore, allowing the entire state of the FRTCUOP system to be stored in a file, and restoring an FRTCUOP system from such file
+* Backup/restore, allowing the entire state of the FRTCUOP system to be stored in a directory, and restoring an FRTCUOP system from such directory
 
 ### Version 1
 

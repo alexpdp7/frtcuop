@@ -59,3 +59,8 @@
     enabled: yes
     state: restarted
   when: ejabberd_yml.changed
+- name: Deploy backup script
+  copy:
+    src: ejabberd_backup
+    dest: /usr/local/bin/ejabberd_backup
+    mode: "755"

@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -ue
+
+BACKUP_DIR=$1
+
+mkdir -p $BACKUP_DIR
+pg_dump >$BACKUP_DIR/pg_dump
+cp -a /opt/ejabberd/upload/ $BACKUP_DIR/upload

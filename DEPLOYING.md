@@ -77,3 +77,11 @@ $ /usr/bin/check_ragent http://<ip>:21488/
 # TODO: check TLS
 $ /usr/lib64/nagios/plugins/check_jabber <ip>
 ```
+
+# Backups
+
+To create a backup, run the `ejabberd_backup` command as the `ejabberd` user, providing a target directory as the first argument.
+The command creates the directory if it does not exist.
+The directory will contain a dump of the PostgreSQL database and a copy of the uploads directory.
+
+To restore, restore the PostgreSQL dump and restore uploads to `/opt/ejabberd/upload/`.
