@@ -6,6 +6,11 @@
   apt:
     name: gpg
     state: present
+# to be able to execute tasks as the postgres user
+- name: Install acl
+  apt:
+    name: acl
+    state: present
 - name: Configure cloudsmith apt key
   apt_key:
     url: https://dl.cloudsmith.io/public/ragent/ragent/gpg.84A1BAE227267658.key
