@@ -185,7 +185,7 @@ modules:
     ## to configure. Uncomment this when you have SQL configured:
     ## db_type: sql
     assume_mam_usage: true
-    default: never
+    default: always
   mod_mqtt: {}
   mod_muc:
     access:
@@ -202,6 +202,8 @@ modules:
   mod_muc_admin: {}
   mod_offline:
     access_max_user_messages: max_user_offline_messages
+    store_groupchat: true
+    use_mam_for_storage: true
   mod_ping: {}
   mod_privacy: {}
   mod_private: {}
