@@ -13,6 +13,7 @@
     path: "data/cert-{{ domain }}.csr"
     privatekey_path: "data/cert-{{ domain }}.key"
     common_name: "{{ domain }}"
+    subjectAltName: "DNS:xmpp-upload.{{ domain }}"
 - name: Create challenge
   acme_certificate:
     account_key_src: "data/acme-account.key"
@@ -27,13 +28,16 @@
 - name: Address challenge using Route 53
   route53:
     zone: "{{ dns_aws_zone }}"
-    record: "{{ challenge.challenge_data[domain]['dns-01'].record }}"
+    record: "{{ challenge.challenge_data[item]['dns-01'].record }}"
     type: TXT
     ttl: 60
     state: present
     overwrite: yes
     wait: yes
-    value: "{{ challenge.challenge_data[domain]['dns-01'].resource_value | regex_replace('^(.*)$', '\"\\1\"') }}"
+    value: "{{ challenge.challenge_data[item]['dns-01'].resource_value | regex_replace('^(.*)$', '\"\\1\"') }}"
+  loop:
+    - "{{ domain }}"
+    - "xmpp-upload.{{ domain }}"
   when: challenge is changed and domain in challenge.challenge_data
 - name: Retrieve cert
   acme_certificate:

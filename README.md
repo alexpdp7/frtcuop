@@ -33,7 +33,7 @@ FRTCUOP is based in existing open source projects.
   * Group messaging
   * Audio/video calls
   * Federation
-  * Modern experience (push notifications, low battery usage, delivery/read receipts, etc.)
+  * Modern experience (push notifications, low battery usage, delivery/read receipts, inline multimedia, etc.)
 * Monitoring
 * Compatible with Movim servers (tested with https://chatterboxtown.us/)
 * Automatic updates
@@ -42,7 +42,7 @@ FRTCUOP is based in existing open source projects.
 
 * Backup/restore, allowing the entire state of the FRTCUOP system to be stored in a file, and restoring an FRTCUOP system from such file
 * XMPP server deployment, usable by the Conversations XMPP client, with the following features:
-  * Modern experience (multiple device synchronization, inline multimedia, etc.)
+  * Modern experience (multiple device synchronization, etc.)
 
 ### Version 1
 
