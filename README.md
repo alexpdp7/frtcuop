@@ -73,6 +73,6 @@ Those features are not part of the roadmap right now:
 * Clustering/high availability
 * End-to-end encryption
 * Accessibility
-* Real-time location sharing (not supported by Conversations?)
+* Real-time location sharing (Conversations does not support this directly. You can use Google Maps to share your location- it provides a URL you can share through XMPP)
 
 However, the project could benefit from those features and would initially consider contributions to the project in those areas.
