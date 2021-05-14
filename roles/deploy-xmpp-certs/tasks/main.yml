@@ -5,7 +5,7 @@
 - name: Copy privkey
   copy:
     src: "data/cert-{{ xmpp_domain }}.key"
-    dest: /opt/ejabberd/conf//privkey.pem
+    dest: /opt/ejabberd/conf/privkey.pem
 - name: Restart ejabberd.service
   systemd:
     name: ejabberd
