@@ -5,7 +5,7 @@
   * Access via SSH
   * Can log in as a non-privileged user and sudo
   * Public IP
-* AWS Route 53 zone and credentials
+* AWS Route 53 zone and credentials (optional, see instructions below for running without Route 53)
 
 # Procedure
 
@@ -48,6 +48,12 @@ Deploy:
 $ ./ansible-playbook -K -e @vars.yml deploy.yml
 ```
 
+Set up DNS:
+
+```
+$ ./ansible-playbook -K -e @vars.yml dns.yml
+```
+
 Create and deploy certs (or renew):
 
 ```
@@ -85,3 +91,30 @@ The command creates the directory if it does not exist.
 The directory will contain a dump of the PostgreSQL database and a copy of the uploads directory.
 
 To restore, restore the PostgreSQL dump and restore uploads to `/opt/ejabberd/upload/`.
+
+# Running without using AWS Route 53 as the DNS provider
+
+From the steps above:
+
+* In `vars.yml`, do not set up `dns_aws_zone` nor `acme_email`.
+* Do not set up AWS credentials.
+* Do not execute the `certs.yml`, `dns.yml` playbooks.
+* Create the following DNS records:
+
+```
+_xmpp-server._tcp.{{ xmpp_domain }} SRV 0 0 5269 {{ public_ip }}
+_xmpp-client._tcp.{{ xmpp_domain }} SRV 0 0 5222 {{ public_ip }}
+_stun._udp.{{ xmpp_domain }}        SRV 0 0 3478 {{ public_ip }}
+_stun._tcp.{{ xmpp_domain }}        SRV 0 0 3478 {{ public_ip }}
+_stuns._tcp.{{ xmpp_domain }}       SRV 0 0 5349 {{ public_ip }}
+_turn._udp.{{ xmpp_domain }}        SRV 0 0 3478 {{ public_ip }}
+_turn._tcp.{{ xmpp_domain }}        SRV 0 0 3478 {{ public_ip }}
+_turns._tcp.{{ xmpp_domain }}       SRV 0 0 5349 {{ public_ip }}
+```
+
+Replacing `{{ xmpp_domain }}` with your XMPP domain and `{{ public_ip }}` with your host's public IP address.
+
+Obtain a valid certificate for `{{ xmpp_domain }}` and `xmpp-upload.{{ xmpp_domain }}` and drop the full chain and private key at:
+
+* `/opt/ejabberd/conf/fullchain.pem`
+* `/opt/ejabberd/conf/privkey.pem`
